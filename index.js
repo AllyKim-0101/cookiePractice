@@ -1,49 +1,73 @@
-// Using
-const app = require("express")();
-app.get("/", (req, res) => {
-  res.sendFile(`${__dirname}/index.html`);
-});
-
-app.listen(8080, () => console.log("listening on port 8080"));
-
+let showCookieMessageTimeOut;
 //on load, the cookie pop-up will appear after 8 seconds, if the user has not accepted cookie
 if (!readCookie("accepted")) {
   setTimeout(() => {
-    showCookieMessage();
+    showAOCmessage();
+    createCookie("hasSeenAOC", true, 1);
+    showCookieMessageTimeOut = setTimeout(() => {
+      closeAOCmessage();
+      showCookieMessage();
+    }, 5000);
   }, 3000);
 }
 
+//// AOC
+
+let AOCpopUp = document.querySelector(".AOCpopUp");
+//when user clicks
+document
+  .querySelector(".AOC-ModalButton")
+  .addEventListener("click", function () {
+    closeAOCmessage();
+    clearTimeout(showCookieMessageTimeOut);
+    showCookieMessage();
+  });
+
+//show AOC message
+function showAOCmessage() {
+  console.log("showAOC");
+  AOCpopUp.style.visibility = "visible";
+}
+//close AOC message
+function closeAOCmessage() {
+  console.log("closeAOC");
+  AOCpopUp.style.visibility = "hidden";
+  console.log("closeMessage");
+}
+
+//// Cookie
 let cookieModalBox = document.querySelector(".cookieModalBox");
 //user clicks
 document
   .querySelector(".cookieModalButton")
   .addEventListener("click", function () {
     closeCookieMessage();
-    createCookie("accepted", true, 1000000);
+    createCookie("accepted", true, 3650);
   });
 
-// 1: check if user accepted cookies
+// check if user accepted cookies
 function readCookie(name) {
+  console.log("readCookie");
+
   const cookie = document.cookie
     .split(";")
     .map((cookie) => cookie.split("="))
     .find((ele) => ele[0].trim() === name);
-  console.log("readCookie");
   return cookie ? cookie[1] : null;
 }
 
-//2:show cookie message
+//show cookie message
 function showCookieMessage() {
   console.log("showCookie");
   cookieModalBox.style.visibility = "visible";
 }
-//3:close cookie message
+//close cookie message
 function closeCookieMessage() {
   console.log("closeCookie");
   cookieModalBox.style.visibility = "hidden";
 }
 
-//4: save/create a cookie to remember that user accepted cookies
+//save/create a cookie to remember that user accepted cookies
 function createCookie(cname, cvalue, exdays) {
   const d = new Date();
   d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
