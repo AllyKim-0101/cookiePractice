@@ -1,3 +1,11 @@
+// Using
+const app = require("express")();
+app.get("/", (req, res) => {
+  res.sendFile(`${__dirname}/index.html`);
+});
+
+app.listen(8080, () => console.log("listening on port 8080"));
+
 //on load, the cookie pop-up will appear after 8 seconds, if the user has not accepted cookie
 if (!readCookie("accepted")) {
   setTimeout(() => {
