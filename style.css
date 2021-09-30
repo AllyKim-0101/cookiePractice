@@ -1,0 +1,33 @@
+body {
+  background: green;
+}
+
+.cookieModalBox {
+  visibility: hidden;
+}
+
+.container {
+  background: white;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 360px) {
+  .container {
+    flex-wrap: wrap;
+  }
+}
+
+.cookieModalButton {
+  background-color: rgba(255, 56, 116, 1);
+  color: rgba(14, 5, 5, 1);
+  /* top: 80px;
+  right: 5px; */
+  margin: 20px;
+  padding: 10px;
+  @media only screen and (max-width: 360px) {
+    width: 100%;
+  }
+}
