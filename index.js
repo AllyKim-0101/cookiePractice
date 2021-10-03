@@ -1,15 +1,13 @@
 let showCookieMessageTimeOut;
 //on load, the cookie pop-up will appear after 8 seconds, if the user has not accepted cookie
-if (!readCookie("accepted")) {
-  setTimeout(() => {
-    showAOCmessage();
-    createCookie("hasSeenAOC", true, 1);
-    showCookieMessageTimeOut = setTimeout(() => {
-      closeAOCmessage();
-      showCookieMessage();
-    }, 5000);
-  }, 3000);
-}
+
+setTimeout(() => {
+  showAOCmessage();
+  showCookieMessageTimeOut = setTimeout(() => {
+    closeAOCmessage();
+    showCookieMessage();
+  }, 5000);
+}, 3000);
 
 //// AOC
 
@@ -26,7 +24,10 @@ document
 //show AOC message
 function showAOCmessage() {
   console.log("showAOC");
-  AOCpopUp.style.visibility = "visible";
+  if (!readCookie("hasSeenAOC")) {
+    createCookie("hasSeenAOC", true, 1);
+    AOCpopUp.style.visibility = "visible";
+  }
 }
 //close AOC message
 function closeAOCmessage() {
@@ -35,7 +36,7 @@ function closeAOCmessage() {
   console.log("closeMessage");
 }
 
-//// Cookie
+// Cookie
 let cookieModalBox = document.querySelector(".cookieModalBox");
 //user clicks
 document
@@ -59,7 +60,9 @@ function readCookie(name) {
 //show cookie message
 function showCookieMessage() {
   console.log("showCookie");
-  cookieModalBox.style.visibility = "visible";
+  if (!readCookie("accepted")) {
+    cookieModalBox.style.visibility = "visible";
+  }
 }
 //close cookie message
 function closeCookieMessage() {
