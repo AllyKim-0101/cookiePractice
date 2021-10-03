@@ -1,5 +1,5 @@
 body {
-  background: green;
+  background: greenyellow;
   margin: 0 auto;
 }
 
@@ -7,6 +7,7 @@ body {
 .AOCpopUp {
   visibility: hidden;
   display: flex;
+  justify-content: center;
 }
 .AOCpopUpContainer {
   margin: 50px auto;
@@ -27,19 +28,21 @@ body {
 .cookieModalBox {
   visibility: hidden;
   display: flex;
-  position: fixed;
-  bottom: 100px;
-  width: 80%;
   justify-content: center;
+  position: fixed;
+  bottom: 20px;
+  width: 100%;
 }
 
 .cookieModalBoxContainer {
   background: white;
-  padding: 20px;
+  margin: 50px auto;
+  border: 3px solid black;
   display: flex;
   justify-content: space-between;
-  border: 3px solid black;
-  margin: 50px;
+  align-items: flex-start;
+  padding: 10px 0px 20px 20px;
+  max-width: 80%;
 }
 
 @media (max-width: 360px) {
