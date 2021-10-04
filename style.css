@@ -14,16 +14,20 @@ body {
 }
 .AOCpopUpContainer {
   margin: 50px auto;
-  border: 3px solid black;
+  border: 20px solid;
+  border-image-source: url(/aoc-repeat-pattern_64x64.jpg);
+  border-image-repeat: repeat;
+  border-image-slice: 7;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 0px 20px 20px;
   max-width: 80%;
+  align-items: flex-start;
 }
 
 .AOC-ModalButton {
-  margin: 20px;
+  margin: 3px 10px;
 }
 
 /* Cookie */
@@ -44,12 +48,17 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  align-items: center;
   padding: 10px 0px 20px 20px;
   max-width: 80%;
 }
 
-@media (max-width: 360px) {
+@media only screen and (max-width: 360px) {
   .cookieModalBoxContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
     flex-wrap: wrap;
     max-width: 80%;
   }
@@ -60,9 +69,14 @@ body {
   color: rgba(14, 5, 5, 1);
   /* top: 80px;
   right: 5px; */
-  margin: 20px;
-  padding: 10px;
-  @media only screen and (max-width: 360px) {
+  margin: 15px;
+  padding: 8px;
+  width: 150px;
+}
+
+@media only screen and (max-width: 360px) {
+  .cookieModalButton {
     width: 100%;
+    margin: 10px 10px 10px 0px;
   }
 }
